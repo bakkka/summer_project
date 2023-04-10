@@ -12,6 +12,7 @@ const minCtx = thumbnailCanvas.getContext('2d');
 
 const list1 = document.getElementById('list1');
 const list2 = document.getElementById('list2');
+let startDeviation = 50;
 let DEVIATION = 50;
 let MinDEVIATION = 15;
 let minOffsetX = 0;
@@ -348,7 +349,7 @@ const eraseMin = () => {
 }
 const area = () => {
     minCtx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-    minCtx.fillRect((minWidth/2)-MinDEVIATION - minOffsetX-3-minScale, (minHeight/2)-MinDEVIATION - minOffsetY-3-minScale, MinDEVIATION*2+6+(minScale*2), MinDEVIATION*2+6+(minScale*2));
+    minCtx.fillRect((minWidth/2)-MinDEVIATION -minOffsetX-3-minScale, (minHeight/2)-MinDEVIATION - minOffsetY-3-minScale, MinDEVIATION*2+6+(minScale*2), MinDEVIATION*2+6+(minScale*2));
 }
 const addScale = () => {
     DEVIATION += 5;
@@ -416,7 +417,7 @@ const left = () => {
     OPTIONS.ping = 0;
     OPTIONS.full = false;
 
-    minOffsetX += (MinDEVIATION / difference);
+    minOffsetX += (MinDEVIATION / difference)- (startDeviation-DEVIATION)/4.5;
     eraseMin();
     area();
 }
@@ -430,7 +431,7 @@ const right = () => {
     OPTIONS.ping = 0;
     OPTIONS.full = false;
 
-    minOffsetX += -(MinDEVIATION / difference);
+    minOffsetX += (-(MinDEVIATION / difference))- (startDeviation-DEVIATION)/4.5;
     console.log(minOffsetX)
     eraseMin()
     area();
@@ -458,4 +459,5 @@ labelAxes();
 drawAxesMin();
 labelAxesMin();
 area();
+
 
