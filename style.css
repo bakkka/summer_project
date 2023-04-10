@@ -31,6 +31,7 @@ body{
     border-radius: 5px;
     cursor: pointer;
     height: 21.2px;
+    margin-bottom: 10px;
 }
 
 .add-button:hover {
@@ -79,4 +80,24 @@ body{
 }
 .colorChange{
     margin-right: 30px;
+}
+#deleteAll{
+    margin-top: 50px;
+}
+.graphic{
+    display: flex;
+    flex-direction: column;
+}
+.scale{
+    display: flex;
+    flex-direction: column;
+}
+.options{
+    display: flex;
+    justify-content: space-between;
+}
+#thumbnailCanvas{
+    scale: 0.5;
+    border: 1px solid black;
+    margin-top: -50px;
 }
