@@ -8,7 +8,31 @@
 <body>
 
 <div class="content">
-    <canvas id="canvas" width="600" height="600"></canvas>
+    <div class="graphic">
+        <canvas id="canvas" width="600" height="600"></canvas>
+        <div class="options">
+            <div class="scale">
+                <p>Масштаб:</p>
+                <div>
+                    <button style="width: 50px;height: 30px" class="add-button" onclick="addScale()">+</button>
+                    <button style="width: 50px;height: 30px" class="add-button" onclick="downScale()">-</button>
+                </div>
+            </div>
+            <div style="margin-right: 50px" class="scale">
+                <p>Прокрутка:</p>
+                <div>
+                    <div>
+                        <button style="width: 50px;height: 30px" class="add-button" onclick="down()">Вниз</button>
+                        <button style="width: 50px;height: 30px" class="add-button" onclick="up()">Вверх</button>
+                    </div>
+                    <div>
+                        <button style="width: 50px;height: 30px" class="add-button" onclick="left()">Влево</button>
+                        <button style="width: 50px;height: 30px" class="add-button" onclick="right()">Вправо</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="notification" class="notification"></div>
     <div class="main">
         <div class="panel">
@@ -22,9 +46,9 @@
                 <button id="add1" class="add-button">Add</button>
 
             </div>
-            <button class="myButton" onclick="drawGraphic1()">Нарисовать график 1</button>
+            <button class="myButton" onclick="drawGraphic1()">Нарисовать/отобразить график 1</button>
             <input id="color1" type="color">
-            <button class="myButton" onclick="erase()">Стереть график 1</button>
+            <button class="myButton" onclick="eraseGraphic1()">Скрыть график 1</button>
             <div class="legend">
                 <div class="colorChange">
                     <p>Сменить цвет графика</p>
@@ -45,12 +69,12 @@
                 <label for="value2">y:</label>
                 <input type="text" id="value2" class="input-text">
 
-                <button id="add2" class="add-button">Add</button>
+                <button  id="add2" class="add-button">Add</button>
 
             </div>
-            <button class="myButton" onclick="drawGraphic2()">Нарисовать график 2</button>
+            <button class="myButton" onclick="drawGraphic2()">Нарисовать/отобразить график 2</button>
             <input id="color2" type="color">
-            <button class="myButton" onclick="erase()">Стереть график 2</button>
+            <button class="myButton" onclick="eraseGraphic2()">Скрыть график 2</button>
             <div class="legend">
                 <div class="colorChange">
                     <p>Сменить цвет графика</p>
@@ -62,7 +86,12 @@
                 </div>
             </div>
         </div>
+        <button id="deleteAll" class="myButton" onclick=erase()>Стереть всё</button>
+        <p>Миниаютюра:</p>
+        <canvas id="thumbnailCanvas" width="300" height="300"></canvas>
     </div>
+
+
 </div>
 <script src="app.js" type="text/javascript"></script>
 </body>
