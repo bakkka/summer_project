@@ -100,13 +100,16 @@ let data1 = []
 document.getElementById("add1").addEventListener("click", function() {
     let key = document.getElementById("key1").value;
     let value = document.getElementById("value1").value;
-    let newItem = {};
-    newItem[key] = parseInt(value);
-    data1.push(newItem);
+    if (key && value){
+        let newItem = {};
+        console.log(key, value)
+        newItem[key] = parseInt(value);
+        data1.push(newItem);
+        renderList1();
+        drawPoint1();
+    }
     document.getElementById("key1").value = '';
     document.getElementById("value1").value = '';
-    renderList1();
-    drawPoint1();
 });
 
 
@@ -114,13 +117,15 @@ let data2 = []
 document.getElementById("add2").addEventListener("click", function() {
     let key = document.getElementById("key2").value;
     let value = document.getElementById("value2").value;
-    let newItem = {};
-    newItem[key] = parseInt(value);
-    data2.push(newItem);
+    if (key && value) {
+        let newItem = {};
+        newItem[key] = parseInt(value);
+        data2.push(newItem);
+        renderList2();
+        drawPoint2();
+    }
     document.getElementById("key2").value = '';
     document.getElementById("value2").value = '';
-    renderList2();
-    drawPoint2();
 });
 
 
