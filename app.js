@@ -1,7 +1,7 @@
-// Получаем canvas элемент
+
 let canvas = document.getElementById('canvas');
 
-// Указываем элемент для 2D рисования
+
 let ctx = canvas.getContext('2d');
 let canvasWidth = canvas.width;
 let canvasHeight = canvas.height;
@@ -49,11 +49,11 @@ document.getElementById('color2_2').addEventListener('change', function (){
     color2 = color;
     drawGraphic2();
 })
-const message = document.getElementById("notification");  // Получаем элемент сообщения
+const message = document.getElementById("notification");  
 
-canvas.addEventListener("click", (event) => {  // Вешаем обработчик события "mouseover"
-    const mouseX = event.offsetX;  // Получаем координату X мыши относительно холста
-    const mouseY = event.offsetY;  // Получаем координату Y мыши относительно холста
+canvas.addEventListener("click", (event) => {  
+    const mouseX = event.offsetX;  
+    const mouseY = event.offsetY;  
     console.log(mouseX)
     const diffY = mouseY - canvasHeight/2
     let data = [];
@@ -78,20 +78,20 @@ canvas.addEventListener("click", (event) => {  // Вешаем обработч�
         const [x, y] = Object.entries(point)[0];
         console.log(Number(x), y);
         distance = Math.sqrt((mouseX - x) ** 2 + ((canvasHeight/2 - diffY) - y) ** 2);
-        if (distance < 5) {  // Проверяем, находится ли мышь рядом с точкой (10 - это радиус области вокруг точки, в которой будет показываться сообщение)
+        if (distance < 5) {  
             let convertX = (x - canvasWidth/2) / DEVIATION;
             let convertY = -(canvasHeight/2 - y) / DEVIATION;
-            console.log(`Координаты точки: (${x}, ${y})`);  // Показываем сообщение с координатами точки
+            console.log(`Координаты точки: (${x}, ${y})`);  
             message.innerText = `Координаты точки: (${convertX}, ${convertY})`;
             message.style.top = `${mouseY}px`;
             message.style.left = `${mouseX}px`;
             message.classList.add("show");
             setTimeout(() => {
                 message.classList.remove("show");
-            }, 3000); //Можно задать время исчезновения уведомления
+            }, 3000); 
             return true;
         } else {
-            console.log('not near');  // Если мышь не находится рядом с точкой, то сообщение очищаем
+            console.log('not near'); 
         }
     })
 });
@@ -143,7 +143,6 @@ const labelAxes = () => {
     ctx.font = '10px Arial';
     ctx.textAlign = 'center';
 
-    // Подписываем вертикальную ось
     let value = 1
     for (let y = canvasHeight/2 + DEVIATION; y < (canvas.height + DEVIATION)*3; y += DEVIATION) {
             ctx.fillText(value.toString(), (canvas.width / 2 + 7)-offsetX, y-offsetY);
@@ -155,7 +154,6 @@ const labelAxes = () => {
             value += 1;
     }
 
-    // Подписываем горизонтальную ось
     value = 1
     for (let x = canvasWidth/2 + DEVIATION; x < canvas.width*5 ; x += DEVIATION) {
             ctx.fillText(value.toString(), x-offsetX, (canvas.height / 2 + 10)-offsetY);
@@ -186,7 +184,6 @@ const labelAxesMin = () => {
     minCtx.font = '10px Arial';
     minCtx.textAlign = 'center';
 
-    // Подписываем вертикальную ось
     let value = 0
     for (let y = minHeight/2 + MinDEVIATION; y < (minHeight + MinDEVIATION)*3; y += MinDEVIATION) {
         value += 5;
@@ -198,7 +195,6 @@ const labelAxesMin = () => {
         minCtx.fillText(value.toString(), (minWidth / 2 + 7), y);
     }
 
-    // Подписываем горизонтальную ось
     value = 0
     for (let x = minWidth/2 + MinDEVIATION; x < minWidth*5 ; x += MinDEVIATION) {
         value += 5;
@@ -213,14 +209,7 @@ const labelAxesMin = () => {
 
 
 const drawPoint1 = () => {
-    // if (data1.length === 0){
-    //     data1 = [
-    //         {'1':3},
-    //         {'3':9},
-    //         {'8':12},
-    //         {'10':4}
-    //     ]
-    // }
+   
     const convert1 = data1.map(point => {
         const key = Object.keys(point)[0];
         const value = point[key];
@@ -240,7 +229,7 @@ const drawPoint1 = () => {
 const drawGraphic1 = () => {
     let points = drawPoint1();
     if (points.length !== 0){
-        ctx.strokeStyle = color1; // устанавливаем цвет линии, например - красный
+        ctx.strokeStyle = color1; 
         ctx.beginPath();
         ctx.moveTo(points[0][0]-offsetX, points[0][1]-offsetY);
         for (let i = 1; i < points.length; i++) {
@@ -271,7 +260,7 @@ const drawPoint2 = () => {
 const drawGraphic2 = () => {
     let points = drawPoint2();
     if (points.length !== 0){
-        ctx.strokeStyle = color2; // устанавливаем цвет линии, например - красный
+        ctx.strokeStyle = color2; 
         ctx.beginPath();
         ctx.moveTo(points[0][0]-offsetX, points[0][1]-offsetY);
         for (let i = 1; i < points.length; i++) {
@@ -299,9 +288,8 @@ const eraseGraphic2 = () => {
     OPTIONS.full = true;
 }
 const  renderList1 = () => {
-    list1.innerHTML = ''; // очищаем список перед рендерингом
+    list1.innerHTML = ''; 
     let current = [];
-    // проходим по всем объектам в массиве и добавляем их в список
     let index = 1
     data1.map((obj) => {
         const key = Object.keys(obj)[0];
@@ -313,9 +301,8 @@ const  renderList1 = () => {
     list1.innerHTML = current;
 }
 const renderList2 = () => {
-    list2.innerHTML = ''; // очищаем список перед рендерингом
+    list2.innerHTML = ''; 
     let current = [];
-    // проходим по всем объектам в массиве и добавляем их в список
     let index = 1
     data2.map((obj) => {
         const key = Object.keys(obj)[0];
